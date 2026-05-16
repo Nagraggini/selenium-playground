@@ -1,6 +1,32 @@
 
 [Programozásról szóló könyvem](https://nagraggini.github.io/my-awesome-book/)
 
+**Tartalomjegyzék**
+
+- [Seleniumról általánosságban](#seleniumról-általánosságban)
+  - [Selenium](#selenium)
+    - [Selenium IDE](#selenium-ide)
+    - [Selenium WebDriver](#selenium-webdriver)
+    - [Selenium Grid](#selenium-grid)
+- [Előkészületek](#előkészületek)
+- [Első tesz](#első-tesz)
+- [Weboldalak, amiket lehet tesztelni](#weboldalak-amiket-lehet-tesztelni)
+- [Selenium WebDriver + Java Cheat Sheet](#selenium-webdriver--java-cheat-sheet)
+  - [1. Böngésző inicializálása és beállítások](#1-böngésző-inicializálása-és-beállítások)
+  - [2. Navigáció és ablakkezelés](#2-navigáció-és-ablakkezelés)
+  - [3. Elemkeresési stratégiák (By lokátorok)](#3-elemkeresési-stratégiák-by-lokátorok)
+  - [4. Elemekkel való interakció (WebElement)](#4-elemekkel-való-interakció-webelement)
+  - [5. Információ lekérése a böngészőtől](#5-információ-lekérése-a-böngészőtől)
+  - [6. Várakozások (Waits) – A stabilitásért](#6-várakozások-waits--a-stabilitásért)
+    - [Explicit Wait (Ajánlott)](#explicit-wait-ajánlott)
+    - [Implicit Wait](#implicit-wait)
+  - [7. Speciális elemek kezelése](#7-speciális-elemek-kezelése)
+    - [Dropdown (Legördülő menü) kezelése](#dropdown-legördülő-menü-kezelése)
+    - [Alert-ek (Felugró ablakok) kezelése](#alert-ek-felugró-ablakok-kezelése)
+    - [Iframes (Beágyazott oldalak) kezelése](#iframes-beágyazott-oldalak-kezelése)
+- [AssertJ](#assertj)
+
+
 # Seleniumról általánosságban
 
 ## Selenium
@@ -36,18 +62,69 @@ Ctrl+Shift+P -> Írd be: Java: Create Java Project. -> Válaszd a Maven opciót,
 
 A pom.xml-ben a dependencies részre ezt másold be:
 ```xml
-<dependency>
-    <groupId>org.seleniumhq.selenium</groupId>
-    <artifactId>selenium-java</artifactId>
-    <version>4.18.0</version>
-</dependency>
+<!-- Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-java</artifactId>
+		    <version>4.41.0</version>
+		    <scope>compile</scope>
+		</dependency>
+		
+		<!-- Source: https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<dependency>
+		    <groupId>io.github.bonigarcia</groupId>
+		    <artifactId>webdrivermanager</artifactId>
+		    <version>6.3.3</version>
+		    <scope>compile</scope>
+		</dependency>
+		
+		
+		<!-- Source: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter</artifactId>
+		    <version>6.0.3</version>
+		    <scope>test</scope>
+		</dependency>
+
+         <!--Modern AssertJ használatához.-->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.27.3</version>
+            <scope>test</scope>
+        </dependency>
 ```
+
+maven-surefire-plugin-t cseréld le újabbra:
+```xml
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>                
+            </plugin>
+```
+
+A https://mvnrepository.com/-ról vannak a függőségek:
+- Selenium Java 
+- WebDriverManager (bonigarcia)
+- JUnit Jupiter (Aggregator)
+
 
 Valamint az 1.7-et írd át 21-re.
 ```xml
 <maven.compiler.source>21</maven.compiler.source>
 <maven.compiler.target>21</maven.compiler.target>
 ```
+
+Utána ellenőrid le, hogy minden jól sikerült-e beállítani, terminálba: 
+mvn clean test-compile
+
+Eclipse esetén:
+
+A pom.xml-nél az első sorban ennél a linknél https helyett http legyen. http://maven.apache.org/xsd/maven-4.0.0.xsd
+
+Projekten jobb klikk -> Build Path -> Configure Build Path -> Libraries -> ModulePath -> Jobb szélén Edit -> Java 21 -> Majd bal szélén katt a Java Compiler-re és Java 21.
 
 # Első tesz
 
@@ -289,4 +366,18 @@ driver.switchTo().frame("iframe-id");
 
 // Visszaváltás a főoldalra
 driver.switchTo().defaultContent();
+```
+
+---
+
+# AssertJ
+
+Olvashatóbb és erősebb assertion API.
+
+```java
+    assertThat(driver.getTitle()).isEqualTo("Automation Exercise");
+    assertThat(name).isNotNull();
+    assertThat(text).contains("Hello");
+    assertThat(list).hasSize(3);
+    assertThat(number).isGreaterThan(10);
 ```
