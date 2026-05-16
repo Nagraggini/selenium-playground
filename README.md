@@ -1,6 +1,33 @@
 
 [Programozásról szóló könyvem](https://nagraggini.github.io/my-awesome-book/)
 
+# Seleniumról általánosságban
+
+## Selenium
+
+A Selenium egy széles körben elterjedt, nyílt forráskódú tesztautomatizálási keretrendszer, amelyet főként webes alkalmazások felhasználói felületének (UI) tesztelésére használnak.
+
+### Selenium IDE
+
+A Selenium IDE egy böngészőbe épülő kiegészítő, amely a legegyszerűbb automatizálási megoldások közé tartozik.
+A működése a „record & playback” elven alapul, vagyis a felhasználó által manuálisan végrehajtott lépéseket rögzíti, majd később ezeket automatikusan képes újrajátszani.
+Használatához nem feltétlenül szükséges programozási ismeret, azonban szkriptalapú nyelveket is támogat.
+Hátránya, hogy több korlátozással rendelkezik, így összetettebb tesztelésre kevésbé alkalmas.
+
+### Selenium WebDriver
+
+A Selenium WebDriver egy programozás alapú megoldás UI tesztek automatizálására.
+Egy olyan API-t biztosít, amely lehetővé teszi, hogy különböző programozási nyelveken (pl. Java, C#, Python) írjunk teszteket, amelyek böngészőket vezérelnek.
+Közvetlen kapcsolatot létesít a böngészővel, így gyors és rugalmas végrehajtást biztosít.
+Széles körben elfogadott ipari szabványnak számít, és a legtöbb modern böngészővel kompatibilis.
+
+### Selenium Grid
+
+A Selenium Grid egy olyan infrastruktúra, amely lehetővé teszi a tesztek párhuzamos futtatását különböző környezetekben.
+Segítségével a tesztek több gépen és több böngészőn egyszerre hajthatók végre, ami jelentősen felgyorsítja a tesztelési folyamatot és támogatja a skálázhatóságot.
+
+# Előkészületek
+
 Terminálba -> git init
 
 VS Code kiegészőt töltsd le: Extension Pack for Java
@@ -46,6 +73,7 @@ A test/java/../.. mappában lévő java fájlban láthatod az első tesztet.
     }
 ```
 
+# Weboldalak, amiket lehet tesztelni
 
 http://www.uitestingplayground.com/
 https://the-internet.herokuapp.com/
