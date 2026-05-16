@@ -1,6 +1,5 @@
 package com.own;
 
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,14 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 /**
  * Unit test for simple App.
  */
-public class AppTest {
-    /**
-     * Rigorous Test :-)
-     */
-    @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
-    }
+public class AutomationExcerciseTest {
+    // https://automationexercise.com/test_cases
 
     @Test
     public void ElsoTeszt() {
@@ -24,7 +17,7 @@ public class AppTest {
 
         try {
             // Navigáció egy oldalra
-            driver.get("https://the-internet.herokuapp.com/abtest");
+            driver.get("https://automationexercise.com/");
 
             // Kiírjuk az oldal címét ellenőrzésképpen
             System.out.println("Az oldal címe: " + driver.getTitle());

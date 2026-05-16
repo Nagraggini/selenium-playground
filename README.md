@@ -75,6 +75,9 @@ A test/java/../.. mappában lévő java fájlban láthatod az első tesztet.
 
 # Weboldalak, amiket lehet tesztelni
 
+https://automationexercise.com/test_cases
 http://www.uitestingplayground.com/
 https://the-internet.herokuapp.com/
+https://www.saucedemo.com/
+
 
