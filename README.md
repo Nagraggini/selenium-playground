@@ -38,6 +38,7 @@ sonar analysis
     - [Selenium WebDriver](#selenium-webdriver)
     - [Selenium Grid](#selenium-grid)
 - [Előkészületek](#előkészületek)
+  - [Jelvények engedélyezése](#jelvények-engedélyezése)
 - [Első tesz](#első-tesz)
 - [GitHub Actions](#github-actions)
 - [SonarCloud beállítása](#sonarcloud-beállítása)
@@ -194,6 +195,16 @@ A pom.xml-nél az első sorban ennél a linknél https helyett http legyen. http
 
 Projekten jobb klikk -> Build Path -> Configure Build Path -> Libraries -> ModulePath -> Jobb szélén Edit -> Java 21 -> Majd bal szélén katt a Java Compiler-re és Java 21.
 
+## Jelvények engedélyezése
+
+Alapértelmezetten a workflow-k csak olvashatják a repódat. Mivel a jelvényeket be kell írniuk a mappádba, írási jogot kell adnod nekik:
+
+Menj a GitHubon a Settings -> Actions -> General fülre.
+
+Görgess le a Workflow permissions részig.
+
+Jelöld be a Read and write permissions opciót, majd kattints a Save gombra.
+
 # Első tesz
 
 A test/java/../.. mappában lévő java fájlban láthatod az első tesztet.
@@ -239,7 +250,7 @@ A github.com-on -> Actions  -> Java with Maven.
 
 sonarcloud.io-ra regisztrálj és importáld be a projektet.
 Utána Choose your Analysis Method: With GitHub Actions -> 
-Az oldalon le van írva, hogyan állítsd be a secret token a github-on (Manage environment secrets).
+Az oldalon le van írva, hogyan állítsd be a secret token a github-on (Saját repod -> Settingy -> Secrets and Variables -> Actions -> Variables lapfül -> New environment secrets).
 
 Create or update a build file: Maven -> Configure -> És másold be azt a workflows-t,a mit a SonarCloud mutat, viszont a branch nevét (master/main) és a java verzióját javítsd át mindkét helyen.
 

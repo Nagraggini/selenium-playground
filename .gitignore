@@ -58,6 +58,7 @@ allure-report/
 # Sonar
 # =========================
 .scannerwork/
+.sonar/
 
 # =========================
 # Coverage

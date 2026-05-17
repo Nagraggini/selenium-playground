@@ -66,13 +66,36 @@ jobs:
                   HEADLESS: true
 
             # =========================
+            # Generate JaCoCo Badges
+            # =========================
+            - name: Generate JaCoCo Badge
+              id: jacoco
+              uses: cicirello/jacoco-badge-generator@v2
+              with:
+                  generate-branches-badge: true
+                  jacoco-csv-file: target/site/jacoco/jacoco.csv
+                  badges-directory: .github/badges
+
+            # =========================
+            # Commit and Push the Badges back to repo
+            # =========================
+            - name: Commit and push badges
+              if: ${{ github.event_name == 'push' }}
+              run: |
+                  git config --local user.email "action@github.com"
+                  git config --local user.name "GitHub Action"
+                  git add .github/badges/*.svg
+                  git diff --staged --quiet || git commit -m "chore: update jacoco coverage badges"
+                  git push
+
+            # =========================
             # 7. SonarQube / SonarCloud
             # =========================
             - name: Sonar scan
               env:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   SONAR_HOST_URL: https://sonarcloud.io
-              run: mvn -B verify sonar:sonar -Dsonar.projectKey=Nagraggini_selenium-playground
+              run: mvn -B verify sonar:sonar -Dsonar.projectKey=nagraggini_selenium-playground
 
             # =========================
             # 8. Test reports
