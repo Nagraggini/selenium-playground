@@ -1,0 +1,91 @@
+name: Java Selenium CI (Java 21)
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        types: [opened, synchronize, reopened]
+
+jobs:
+    build-test:
+        runs-on: ubuntu-latest
+
+        steps:
+            # =========================
+            # 1. Checkout
+            # =========================
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            # =========================
+            # 2. Java 21 setup
+            # =========================
+            - name: Set up JDK 21
+              uses: actions/setup-java@v4
+              with:
+                  java-version: 21
+                  distribution: temurin
+                  cache: maven
+
+            # =========================
+            # 3. Cache Maven
+            # =========================
+            - name: Cache Maven dependencies
+              uses: actions/cache@v4
+              with:
+                  path: ~/.m2
+                  key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+
+            # =========================
+            # 4. Build project
+            # =========================
+            - name: Build
+              run: mvn -B clean compile
+
+            # =========================
+            # 5. Run tests (JUnit + Selenium)
+            # =========================
+            - name: Run tests
+              run: mvn -B test
+
+            # =========================
+            # 6. Install Chrome (Selenium CI-hez)
+            # =========================
+            - name: Install Chrome
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y wget gnupg
+                  wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+                  echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google.list
+                  sudo apt-get update
+                  sudo apt-get install -y google-chrome-stable
+
+            # =========================
+            # 7. Headless Selenium tests (CI safe)
+            # =========================
+            - name: Run Selenium tests (headless)
+              run: mvn -B test
+              env:
+                  HEADLESS: true
+
+            # =========================
+            # 8. SonarQube / SonarCloud
+            # =========================
+            - name: Sonar scan
+              env:
+                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                  SONAR_HOST_URL: https://sonarcloud.io
+              run: mvn -B verify sonar:sonar -Dsonar.projectKey=Nagraggini_selenium-playground
+
+            # =========================
+            # 9. Test reports
+            # =========================
+            - name: Upload test reports
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: surefire-reports
+                  path: target/surefire-reports

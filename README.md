@@ -220,6 +220,8 @@ A Java-version-t írd át arra amit a terminál kiír, amikor ezt írod bele: ja
 
 -> Commit changes-- gombra katt.
 
+A projektben lévő workflow fájl profibban van megcsinálva ennél.
+
 A github-on az Actions részen jobb felül katt három pötyre és Create status badge és ami kiír azt másold be felülre a README.md fájlod tetejére. 
 
 # Codacy beállítása
