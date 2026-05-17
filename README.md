@@ -79,6 +79,8 @@ Ctrl+Shift+P -> Írd be: Java: Create Java Project. -> Válaszd a Maven opciót,
 
 Terminálba -> git init
 
+A .gitignore fájlt hozd létre és írd bele, azt ami ennél a projektnél szerepel.
+
 Töltd fel a github.com-ra.
 
 A pom.xml-ben a dependencies részre ezt másold be:
@@ -87,8 +89,7 @@ A pom.xml-ben a dependencies részre ezt másold be:
 		<dependency>
 		    <groupId>org.seleniumhq.selenium</groupId>
 		    <artifactId>selenium-java</artifactId>
-		    <version>4.41.0</version>
-		    <scope>compile</scope>
+		    <version>4.41.0</version>		    
 		</dependency>
 		
 		<!-- Source: https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
@@ -104,7 +105,7 @@ A pom.xml-ben a dependencies részre ezt másold be:
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
 		    <artifactId>junit-jupiter</artifactId>
-		    <version>6.0.3</version>
+		    <version>5.12.2</version>
 		    <scope>test</scope>
 		</dependency>
 
@@ -117,13 +118,33 @@ A pom.xml-ben a dependencies részre ezt másold be:
         </dependency>
 ```
 
+Ezt töröld belőle (JUnit 4):
+```xml
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+```
+
 maven-surefire-plugin-t cseréld le újabbra:
 ```xml
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>                
-            </plugin>
+    <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+
+        <configuration>
+                <source>21</source>
+                <target>21</target>
+        </configuration>
+    </plugin>
+
+<!--És ezt is töröld: -->
+    <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+    </plugin>
 ```
 
 A https://mvnrepository.com/-ról vannak a függőségek:
@@ -139,9 +160,19 @@ Valamint az 1.7-et írd át 21-re.
 ```
 
 Van még jó pár hasznos kiegészítő beállítva ezen projekt pom.xml-be, javalott kimásolni. 
+Ezk vannak benne a setup-ban:
+modern Selenium
+- JUnit 5
+- AssertJ
+- Jacoco
+- SonarCloud
+- GitHub Actions
+- Java 21
 
 Utána ellenőrid le, hogy minden jól sikerült-e beállítani, terminálba: 
-mvn clean test-compile
+mvn clean verify
+
+Ha nincsen semmi piros hibaüzenet vagy warning, akkor jó.
 
 Eclipse esetén:
 
