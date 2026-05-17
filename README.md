@@ -1,8 +1,18 @@
-[![Java Selenium CI (Java 21)](https://github.com/Nagraggini/selenium-playground/actions/workflows/ci.yml/badge.svg)](https://github.com/Nagraggini/selenium-playground/actions/workflows/ci.yml)
+<!-- 1. Státusz és Minőség -->
+[![Java Selenium CI](https://github.com/Nagraggini/selenium-playground/actions/workflows/ci.yml/badge.svg)](https://github.com/Nagraggini/selenium-playground/actions/workflows/ci.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/521e2b8a4c4a4b39afd7bc3324f370d5)](https://app.codacy.com/gh/Nagraggini/selenium-playground/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![SonarQube](https://github.com/Nagraggini/selenium-playground/actions/workflows/maven.yml/badge.svg)](https://github.com/Nagraggini/selenium-playground/actions/workflows/maven.yml)
 
+<!-- 2. Teszt adatok -->
+![Coverage](.github/badges/jacoco.svg)
+![Branches](.github/badges/branches.svg)
 
+<!-- 3. Technológia és Eszközök -->
+![Top Language](https://img.shields.io/github/languages/top/Nagraggini/selenium-playground)
+![Selenium WebDriver](https://img.shields.io/badge/Selenium-WebDriver-333333?style=flat&logo=selenium&logoColor=43B02A)
+
+<!-- 4. Egyéb -->
+![License](https://img.shields.io/badge/license-MIT-green)
 
 **Pipeline:** Push → GitHub Actions:
 
@@ -189,6 +199,9 @@ Projekten jobb klikk -> Build Path -> Configure Build Path -> Libraries -> Modul
 A test/java/../.. mappában lévő java fájlban láthatod az első tesztet.
 
 ```java
+
+WebDriver driver;
+
 @Test
     public void ElsoTeszt() {
         //Ezzel nem jelenik meg a GUI, mert github actions-ben nincs ilyen, ha hagyod megjelenni, akkor a workflows el fog hasalni.
@@ -199,9 +212,10 @@ A test/java/../.. mappában lévő java fájlban láthatod az első tesztet.
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-gpu");
-        
+
         // A böngésző indítása
-        WebDriver driver = new ChromeDriver();
+        // Add át az opciókat a driver példányosításakor
+        driver = new ChromeDriver(options);
 
         try {
             // Navigáció egy oldalra

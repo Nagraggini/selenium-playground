@@ -39,9 +39,10 @@ public class AutomationExcerciseTest {
         WebDriverManager.chromedriver().setup();
 
         // 1. Launch browser
-        driver = new ChromeDriver();
+        // Add át az opciókat a driver példányosításakor
+        driver = new ChromeDriver(options);
 
-        driver.manage().window().maximize();
+        // driver.manage().window().maximize();
     }
 
     @AfterEach
