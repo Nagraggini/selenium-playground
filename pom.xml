@@ -15,7 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.target>21</maven.compiler.target>        
         <!--SonarCloud.io felhasználónév-->
         <sonar.organization>nagraggini</sonar.organization>
     </properties>
@@ -68,21 +68,21 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.12</version>
-
                 <executions>
                     <execution>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
-
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
-
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <includeCurrentProject>true</includeCurrentProject>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -101,7 +101,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>                
+                <version>3.2.5</version> 
+                <!--Ezzel a src/test/java mappában lévő teszteket is figyelni fogja a kód lefedettség mutatásánál.-->
+                <configuration>
+                    <argLine>${argLine}</argLine>
+                </configuration>               
             </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>

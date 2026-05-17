@@ -1,7 +1,7 @@
 <!-- 1. Státusz és Minőség -->
 [![Java Selenium CI](https://github.com/Nagraggini/selenium-playground/actions/workflows/ci.yml/badge.svg)](https://github.com/Nagraggini/selenium-playground/actions/workflows/ci.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/521e2b8a4c4a4b39afd7bc3324f370d5)](https://app.codacy.com/gh/Nagraggini/selenium-playground/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![SonarQube](https://github.com/Nagraggini/selenium-playground/actions/workflows/ci.yml/badge.svg)](https://github.com/Nagraggini/selenium-playground/actions/workflows/ci.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Nagraggini_selenium-playground&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Nagraggini_selenium-playground)
 
 <!-- 2. Teszt adatok -->
 ![Coverage](.github/badges/jacoco.svg)
@@ -259,8 +259,6 @@ A Java-version-t írd át arra amit a terminál kiír, amikor ezt írod bele: ja
 -> Commit changes-- gombra katt.
 
 A projektben lévő workflow fájl profibban van megcsinálva ennél.
-
-A github-on az Actions részen jobb felül katt három pötyre és Create status badge és ami kiír azt másold be felülre a README.md fájlod tetejére. 
 
 # Codacy beállítása
 
