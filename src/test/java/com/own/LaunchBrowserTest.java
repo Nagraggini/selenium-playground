@@ -14,7 +14,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 //https://www.youtube.com/watch?v=HpL6EX2kjq4
-public class LaunchBrowser {
+public class LaunchBrowserTest {
 
     // private WebDriver driver;
 
@@ -90,7 +90,7 @@ public class LaunchBrowser {
         WebElement aInput = driver.findElement(By.id("sum1"));
         aInput.sendKeys("10");
         driver.findElement(By.id("sum2")).sendKeys("15");
-
+        // TODO
     }
 
     @AfterEach

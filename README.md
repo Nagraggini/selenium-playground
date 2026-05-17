@@ -59,6 +59,7 @@ sonar analysis
     - [Alert-ek (Felugró ablakok) kezelése](#alert-ek-felugró-ablakok-kezelése)
     - [Iframes (Beágyazott oldalak) kezelése](#iframes-beágyazott-oldalak-kezelése)
 - [AssertJ](#assertj)
+- [Act](#act)
 - [Local teszthez és githez puska](#local-teszthez-és-githez-puska)
 
 # Források
@@ -501,6 +502,20 @@ Olvashatóbb és erősebb assertion API.
     assertThat(number).isGreaterThan(10);
 ```
 
+# Act
+
+Lokálisan lehet veel tesztelni a workflow-t. Linux-os terminálos telepítés és ellenőrzés:
+
+sudo snap remove act
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo sh -s -- -b /usr/local/bin
+
+hash -r
+act --version
+act push --secret SONAR_TOKEN="a_te_tokened" //Írd át!
+act push -v -v --bind //Medium-t válaszd. Sokat kell, majd várni mire mindent letölt.
+
+<!--TODO-->
+
 # Local teszthez és githez puska
 
 Új branch-et hozz létre!
@@ -513,3 +528,4 @@ Csekkolás:
 git status
 
 Local teszt terminálba: mvn clean test
+Local build test terminálba:  act push -v -v --bind
