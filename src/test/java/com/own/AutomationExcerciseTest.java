@@ -75,8 +75,10 @@ public class AutomationExcerciseTest {
                 .elementToBeClickable(By.xpath("//a[contains(.,'Signup / Login')]")));
         loginBtn.click();
 
+        // 5. Verify 'New User Signup!' is visible
+
         /*
-         * 5. Verify 'New User Signup!' is visible
+         * 
          * 6. Enter name and email address
          * 7. Click 'Signup' button
          * 8. Verify that 'ENTER ACCOUNT INFORMATION' is visible
