@@ -32,6 +32,7 @@ sonar analysis
 
 **Tartalomjegyzék**
 
+- [Források](#források)
 - [Seleniumról általánosságban](#seleniumról-általánosságban)
   - [Selenium](#selenium)
     - [Selenium IDE](#selenium-ide)
@@ -60,6 +61,10 @@ sonar analysis
 - [AssertJ](#assertj)
 - [Local teszthez és githez puska](#local-teszthez-és-githez-puska)
 
+# Források
+
+https://www.youtube.com/watch?v=HpL6EX2kjq4
+Gemini and ChatGPT
 
 # Seleniumról általánosságban
 
