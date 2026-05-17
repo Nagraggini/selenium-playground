@@ -48,6 +48,7 @@ public class AutomationExcerciseTest {
     @AfterEach
     void lebontas() {
         if (driver != null) {
+            // Bezárja az összes ablakot és teljesen leállítja a WebDriver-t.
             driver.quit();
         }
     }
