@@ -1,5 +1,8 @@
+[![Java Selenium CI (Java 21)](https://github.com/Nagraggini/selenium-playground/actions/workflows/ci.yml/badge.svg)](https://github.com/Nagraggini/selenium-playground/actions/workflows/ci.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/521e2b8a4c4a4b39afd7bc3324f370d5)](https://app.codacy.com/gh/Nagraggini/selenium-playground/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![SonarQube](https://github.com/Nagraggini/selenium-playground/actions/workflows/maven.yml/badge.svg)](https://github.com/Nagraggini/selenium-playground/actions/workflows/maven.yml)
+
+
 
 **Pipeline:** Push → GitHub Actions:
 
@@ -44,6 +47,7 @@ sonar analysis
     - [Alert-ek (Felugró ablakok) kezelése](#alert-ek-felugró-ablakok-kezelése)
     - [Iframes (Beágyazott oldalak) kezelése](#iframes-beágyazott-oldalak-kezelése)
 - [AssertJ](#assertj)
+- [Local teszthez és githez puska](#local-teszthez-és-githez-puska)
 
 
 # Seleniumról általánosságban
@@ -459,3 +463,16 @@ Olvashatóbb és erősebb assertion API.
     assertThat(list).hasSize(3);
     assertThat(number).isGreaterThan(10);
 ```
+
+# Local teszthez és githez puska
+
+Új branch-et hozz létre!
+
+Kijelölés: git add .
+Mentés: git commit -m "Fixed: "
+Feltöltés: git push
+
+Csekkolás:
+git status
+
+Local teszt terminálba: mvn clean test
