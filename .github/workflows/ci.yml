@@ -1,4 +1,4 @@
-name: Java Selenium CI (Java 21)
+name: Java Selenium CI
 
 on:
     push:
