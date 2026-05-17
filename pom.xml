@@ -6,63 +6,64 @@
 
     <groupId>com.own</groupId>
     <artifactId>selenium-playground</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
     <name>selenium-playground</name>
+
     <!-- Írd be a tesztelni kívánt honlap url-t. -->
+
     <url>https://automationexercise.com/</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>        
-        <!--SonarCloud.io felhasználónév-->
+        <maven.compiler.target>21</maven.compiler.target>       
+        <!--SonarCloud.io felhasználónév--> 
         <sonar.organization>nagraggini</sonar.organization>
     </properties>
 
-    <dependencies>
-          
-        <!-- Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+    <dependencies> 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.41.0</version>
+            <version>4.18.1</version>
         </dependency>
-		
-        <!-- Source: https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>6.3.3</version>           
-        </dependency>
-		
-		
-        <!-- Source: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
+            <version>6.3.3</version>        
+        </dependency>              
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.12.2</version>
             <scope>test</scope>
         </dependency>
-        
+
         <!--Modern AssertJ használatához.-->
+
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.27.3</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
+
     <build>
-        <plugins><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-          
+
+        <plugins>
             <!--Surefire plugin (JUnit 5 miatt ajánlott)-->
             <plugin>
                 <!--Új verzió kell a Java 21-től. -->
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
             </plugin>
+
             <!--Jacoco a kódlefedettség méréséhez-->
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -74,6 +75,7 @@
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
@@ -87,29 +89,30 @@
                 </executions>
             </plugin>
 
-            <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.4.0</version>
             </plugin>
-            <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.2</version>
-            </plugin>
-            
+                <version>3.3.1</version>
+            </plugin>            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version> 
+                <version>3.5.2</version> 
+
                 <!--Ezzel a src/test/java mappában lévő teszteket is figyelni fogja a kód lefedettség mutatásánál.-->
                 <configuration>
                     <argLine>${argLine}</argLine>
                 </configuration>               
             </plugin>
+
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
+                <version>3.4.2</version>
             </plugin>
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
@@ -119,7 +122,6 @@
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>2.8.2</version>
             </plugin>
-            <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
             <plugin>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.7.1</version>
@@ -128,7 +130,7 @@
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>3.0.0</version>
             </plugin>
-           
+         
         </plugins>
     </build>
 </project>
