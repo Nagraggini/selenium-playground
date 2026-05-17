@@ -191,6 +191,15 @@ A test/java/../.. mappában lévő java fájlban láthatod az első tesztet.
 ```java
 @Test
     public void ElsoTeszt() {
+        //Ezzel nem jelenik meg a GUI, mert github actions-ben nincs ilyen, ha hagyod megjelenni, akkor a workflows el fog hasalni.
+        ChromeOptions options = new ChromeOptions();
+
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-gpu");
+        
         // A böngésző indítása
         WebDriver driver = new ChromeDriver();
 
