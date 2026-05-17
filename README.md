@@ -1,3 +1,19 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/521e2b8a4c4a4b39afd7bc3324f370d5)](https://app.codacy.com/gh/Nagraggini/selenium-playground/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![SonarQube](https://github.com/Nagraggini/selenium-playground/actions/workflows/maven.yml/badge.svg)](https://github.com/Nagraggini/selenium-playground/actions/workflows/maven.yml)
+
+**Pipeline:** Push → GitHub Actions:
+
+checkout
+↓
+setup java
+↓
+maven build
+↓
+selenium tests
+↓
+jacoco coverage
+↓
+sonar analysis
 
 [Programozásról szóló könyvem](https://nagraggini.github.io/my-awesome-book/)
 
@@ -12,6 +28,7 @@
 - [Első tesz](#első-tesz)
 - [GitHub Actions](#github-actions)
 - [SonarCloud beállítása](#sonarcloud-beállítása)
+- [Codacy beállítása](#codacy-beállítása)
 - [Weboldalak, amiket lehet tesztelni](#weboldalak-amiket-lehet-tesztelni)
 - [Selenium WebDriver + Java Cheat Sheet](#selenium-webdriver--java-cheat-sheet)
   - [1. Böngésző inicializálása és beállítások](#1-böngésző-inicializálása-és-beállítások)
@@ -121,6 +138,8 @@ Valamint az 1.7-et írd át 21-re.
 <maven.compiler.target>21</maven.compiler.target>
 ```
 
+Van még jó pár hasznos kiegészítő beállítva ezen projekt pom.xml-be, javalott kimásolni. 
+
 Utána ellenőrid le, hogy minden jól sikerült-e beállítani, terminálba: 
 mvn clean test-compile
 
@@ -164,11 +183,17 @@ sonarcloud.io-ra regisztrálj és importáld be a projektet.
 Utána Choose your Analysis Method: With GitHub Actions -> 
 Az oldalon le van írva, hogyan állítsd be a secret token a github-on (Manage environment secrets).
 
-Create or update a build file: Maven -> Configure -> És másold be azt a workflows-t,a mit a SonarCloud mutat, viszont a branch nevét (master/main) és a java verzióját javítsd át.
+Create or update a build file: Maven -> Configure -> És másold be azt a workflows-t,a mit a SonarCloud mutat, viszont a branch nevét (master/main) és a java verzióját javítsd át mindkét helyen.
 
 A Java-version-t írd át arra amit a terminál kiír, amikor ezt írod bele: java -version
 
 -> Commit changes-- gombra katt.
+
+A github-on az Actions részen jobb felül katt három pötyre és Create status badge és ami kiír azt másold be felülre a README.md fájlod tetejére. 
+
+# Codacy beállítása
+
+codacy.com importáld be a repod. Majd nyisd mega  repod a codacy-n és bal alul beállítások -> Codacy Badge-t másold ki és rakd a REAdME.md fájlod tetejére. 
 
 # Weboldalak, amiket lehet tesztelni
 
