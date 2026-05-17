@@ -31,6 +31,8 @@
 
 # Seleniumról általánosságban
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cffb58d6a4b046bd971574b240976bd2)](https://app.codacy.com/gh/Nagraggini/selenium-playground?utm_source=github.com&utm_medium=referral&utm_content=Nagraggini/selenium-playground&utm_campaign=Badge_Grade)
+
 ## Selenium
 
 A Selenium egy széles körben elterjedt, nyílt forráskódú tesztautomatizálási keretrendszer, amelyet főként webes alkalmazások felhasználói felületének (UI) tesztelésére használnak.
