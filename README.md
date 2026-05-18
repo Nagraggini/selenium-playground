@@ -532,4 +532,8 @@ git status
 Local teszt terminálba: 
 mvn clean test
 
+mvn test -Dtest=RemoteLaunchTest
+
+mvn test -Dtest=LocalLaunchTest
+
 Local build test terminálba:  act push -v -v --bind

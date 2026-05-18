@@ -10,13 +10,17 @@ public class LocalLaunchTest extends BaseFormTest {
     void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--headless");
 
         // Itt inicializáljuk a LOKÁLIS drivert
         // Ezzel nem nyílik meg a böngésző.
-        // driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
 
-        // Ezzel megnyílik a böngésző, viszont a GitHub Actions el fog hasalni.
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        // Ezzel megnyílik a böngésző, viszont a GitHub Actions el fog hasalni!
+        // driver = new ChromeDriver();
+
+        // A GitHub Actions elhasal ezzel, mert nincsen böngésző, amit maximalizálni
+        // lehetne.
+        // driver.manage().window().maximize();
     }
 }
