@@ -529,5 +529,7 @@ Feltöltés: git push
 Csekkolás:
 git status
 
-Local teszt terminálba: mvn clean test
+Local teszt terminálba: 
+mvn clean test
+
 Local build test terminálba:  act push -v -v --bind

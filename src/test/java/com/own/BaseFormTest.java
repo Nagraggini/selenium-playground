@@ -1,50 +1,22 @@
 package com.own;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
+import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 //https://www.youtube.com/watch?v=HpL6EX2kjq4
-public class LaunchBrowserTest {
+@Disabled
+public class BaseFormTest {
 
-    // private WebDriver driver;
-
-    // Felhős módszer
-    private RemoteWebDriver driver;
-
-    @BeforeEach
-    void setUp() {
-        // https://www.testmuai.com/capabilities-generator/-ről kimásolva.
-        ChromeOptions browserOptions = new ChromeOptions();
-        browserOptions.setPlatformName("Windows 10");
-        browserOptions.setBrowserVersion("148.0");
-        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-        // testmuai.com profil adatok és bal alul Credentials
-        ltOptions.put("username", "ecsediandrea");
-        ltOptions.put("accessKey", "LT_qWiCXthkGax20mTB3wvZHai8FGvAhZsbZxdiQfQ4mb2bQNq");
-        ltOptions.put("project", "LambdaTest");
-        ltOptions.put("selenium_version", "4.0.0");
-        ltOptions.put("w3c", true);
-        browserOptions.setCapability("LT:Options", ltOptions);
-        try {
-            // username and accessKey
-            driver = new RemoteWebDriver(new URL(
-                    "https://ecsediandrea:LT_qWiCXthkGax20mTB3wvZHai8FGvAhZsbZxdiQfQ4mb2bQNq@hub.lambdatest.com/wd/hub"),
-                    browserOptions);
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+    protected WebDriver driver;
 
     @Disabled
     @Test
@@ -85,17 +57,42 @@ public class LaunchBrowserTest {
         // driver = new ChromeDriver();
         driver.get("https://www.testmuai.com/selenium-playground/simple-form-demo/");
 
-        String title = driver.getTitle();
-        System.out.println("--!!--" + title);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        try {
+
+            wait.until(ExpectedConditions
+                    .elementToBeClickable(By.id(
+                            "CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")))
+                    .click();
+
+        } catch (Exception e) {
+            // Ha véletlenül nem ugrana fel, ne hasaljon el a teszt
+            System.out.println("--- !!! --- Süti sáv nem jelent meg.");
+        }
+
+        assertEquals("Selenium Grid Online | Run Selenium Test On Cloud", driver.getTitle());
+
         WebElement aInput = driver.findElement(By.id("sum1"));
+
+        assertEquals("Please enter first value", aInput.getAttribute("placeholder"));
+
         aInput.sendKeys("10");
         driver.findElement(By.id("sum2")).sendKeys("15");
-        // TODO
+
+        // F12 chromedev toolban -> //button[text()='Get Sum']
+        driver.findElement(By.xpath("//button[text()='Get Sum']")).click();
+
+        String browserResult = driver.findElement(By.id("addmessage")).getText();
+
+        assertEquals("25", browserResult);
     }
 
     @AfterEach
     void tearDown() {
         // Bezárja az összes ablakot és teljesen leállítja a WebDriver-t.
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
