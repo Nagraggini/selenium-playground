@@ -7,9 +7,6 @@ on:
     pull_request:
         types: [opened, synchronize, reopened]
 
-# ==========================================
-# IDE KERÜLT AZ ENGEDÉLY: Írási jog a repóhoz
-# ==========================================
 permissions:
     contents: write
 
@@ -47,7 +44,7 @@ jobs:
                   key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
 
             # =========================
-            # NEW: Install Maven manually for local act runner
+            # NEW: Install Maven (csak ha helyi 'act'-ot használsz, GitHub-on alapból van)
             # =========================
             - name: Install Maven
               run: |
@@ -61,36 +58,18 @@ jobs:
               run: mvn -B clean compile
 
             # =========================
-            # 5. Install Chrome (Selenium CI-hez kell, még a tesztek előtt!)
+            # 5. Run Tests & Sonar Scan (ÖSSZEVONVA)
             # =========================
-            - name: Install Chrome
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install -y wget gnupg
-                  wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-                  echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google.list
-                  sudo apt-get update
-                  sudo apt-get install -y google-chrome-stable
-
-            # =========================
-            # 6. Headless Selenium tests (CI safe)
-            # =========================
-            - name: Run Selenium tests (headless)
-              run: mvn -B test
+            # Egyszerre futtatja a teszteket headless módban, és küldi az adatokat a Sonarnak
+            - name: Run Tests and Sonar Scan
               env:
                   HEADLESS: true
-
-            # =========================
-            # 7. SonarQube / SonarCloud
-            # =========================
-            - name: Sonar scan
-              env:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   SONAR_HOST_URL: https://sonarcloud.io
               run: mvn -B verify sonar:sonar -Dsonar.projectKey=nagraggini_selenium-playground
 
             # =========================
-            # 8. Generate JaCoCo Badges (A riportokból generál)
+            # 6. Generate JaCoCo Badges
             # =========================
             - name: Generate JaCoCo Badge
               id: jacoco
@@ -101,7 +80,7 @@ jobs:
                   badges-directory: .github/badges
 
             # =========================
-            # 9. Commit and Push the Badges back to repo
+            # 7. Commit and Push the Badges back to repo
             # =========================
             - name: Commit and push badges
               if: ${{ github.event_name == 'push' }}
@@ -113,7 +92,7 @@ jobs:
                   git push
 
             # =========================
-            # 10. Test reports
+            # 8. Test reports
             # =========================
             - name: Upload test reports
               if: always()

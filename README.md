@@ -258,6 +258,8 @@ sonarcloud.io-ra regisztrálj és importáld be a projektet.
 Utána Choose your Analysis Method: With GitHub Actions -> 
 Az oldalon le van írva, hogyan állítsd be a secret token a github-on (Saját repod -> Settingy -> Secrets and Variables -> Actions -> Variables lapfül -> New environment secrets).
 
+A projekted gyökér könyvtárában is csinálj egy .secrets fájl-t, amit hadj ki a .gitignore fájllal a verziókövetésből. Ezt írd bele: SONAR_TOKEN=a_te_sonar_cloud_tokened
+
 Create or update a build file: Maven -> Configure -> És másold be azt a workflows-t,a mit a SonarCloud mutat, viszont a branch nevét (master/main) és a java verzióját javítsd át mindkét helyen.
 
 A Java-version-t írd át arra amit a terminál kiír, amikor ezt írod bele: java -version
