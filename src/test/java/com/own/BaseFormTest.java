@@ -71,11 +71,13 @@ public class BaseFormTest {
             System.out.println("--- !!! --- Süti sáv nem jelent meg.");
         }
 
-        assertEquals("Selenium Grid Online | Run Selenium Test On Cloud", driver.getTitle());
+        assertEquals("Selenium Grid Online | Run Selenium Test On Cloud", driver.getTitle(),
+                "A weboldal címe nem egyezik.");
 
         WebElement aInput = driver.findElement(By.id("sum1"));
 
-        assertEquals("Please enter first value", aInput.getAttribute("placeholder"));
+        assertEquals("Please enter first value", aInput.getAttribute("placeholder"),
+                "A placeholder értékének üzenete nem egyezik!");
 
         aInput.sendKeys("10");
         driver.findElement(By.id("sum2")).sendKeys("15");
@@ -85,7 +87,7 @@ public class BaseFormTest {
 
         String browserResult = driver.findElement(By.id("addmessage")).getText();
 
-        assertEquals("25", browserResult);
+        assertEquals("25", browserResult, "A két szám összege nem egyezik.");
     }
 
     @AfterEach
