@@ -60,6 +60,7 @@ sonar analysis
     - [Iframes (Beágyazott oldalak) kezelése](#iframes-beágyazott-oldalak-kezelése)
 - [AssertJ](#assertj)
 - [Act](#act)
+- [Következő projekt](#következő-projekt)
 - [Local teszthez és githez puska](#local-teszthez-és-githez-puska)
 
 # Források
@@ -517,6 +518,10 @@ act push --secret SONAR_TOKEN="a_te_tokened" //Írd át!
 act push -v -v --bind //Medium-t válaszd. Sokat kell, majd várni mire mindent letölt.
 
 <!--TODO-->
+
+# Következő projekt
+
+TODO https://automationexercise.com/"
 
 # Local teszthez és githez puska
 
