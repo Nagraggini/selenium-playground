@@ -23,37 +23,12 @@ public class BaseFormTest {
     // 10 másodperces várakoztatás deklarálása.
     protected WebDriverWait wait;
 
-    @Disabled
-    @Test
-    void localTest() {
-        // Ezzel nem jelenik meg a GUI, mert github actions-ben nincs ilyen, ha hagyod
-        // megjelenni, akkor a workflows el fog hasalni.
-        // Helyi futtatáshoz.
-        /*
-         * ChromeOptions options = new ChromeOptions();
-         * 
-         * options.addArguments("--headless=new");
-         * options.addArguments("--no-sandbox");
-         * options.addArguments("--disable-dev-shm-usage");
-         * options.addArguments("--remote-allow-origins=*");
-         * options.addArguments("--disable-gpu");
-         * 
-         * // Újabb Selenium verziókban már sokszor nem kell ez.
-         * WebDriverManager.chromedriver().setup();
-         * 
-         * // Add át az opciókat a driver példányosításakor
-         * driver = new ChromeDriver(options);
-         */
-        // Így meg is fog jelenni a GUI.
-        // driver = new ChromeDriver();
-        driver.get("https://www.testmuai.com/selenium-playground/simple-form-demo/");
+    /** Csak azt, hogy a böngésző szerint az oldal betöltődött. */
+    void waitForPageLoad() {
+        wait.until(ExpectedConditions.jsReturnsValue("return document.readyState==='complete'"));
 
-        String title = driver.getTitle();
-        System.out.println("--!!--" + title);
-
-        driver.findElement(By.id("sum1"));
-
-        // driver.manage().window().maximize();
+        // Modern Selenium Best Practice, ha egy konkrét gombra állítasz be wait-t,
+        // mindegyik egységtesztnél.
     }
 
     /** Sütik elfogadása. */
@@ -72,12 +47,16 @@ public class BaseFormTest {
         }
     }
 
+    void openPage(String url) {
+        driver.get(url);
+        waitForPageLoad();
+        handleCookies();
+    }
+
     @Test
     @DisplayName("Check the title")
     void checkTitle() {
-        driver.get("https://www.testmuai.com/selenium-playground/simple-form-demo/");
-
-        handleCookies();
+        openPage("https://www.testmuai.com/selenium-playground/simple-form-demo/");
 
         assertEquals("Selenium Grid Online | Run Selenium Test On Cloud", driver.getTitle(),
                 "A weboldal címe nem egyezik.");
@@ -87,9 +66,7 @@ public class BaseFormTest {
     @DisplayName("Simple Form Demo")
     void simpleFormDemo() {
 
-        driver.get("https://www.testmuai.com/selenium-playground/simple-form-demo/");
-
-        handleCookies();
+        openPage("https://www.testmuai.com/selenium-playground/simple-form-demo/");
 
         driver.findElement(By.id("user-message")).sendKeys("You are the winner!");
 
@@ -118,8 +95,7 @@ public class BaseFormTest {
     @Test
     @DisplayName("Dropdown Demo")
     void dropdownDemo() {
-        driver.get("https://www.testmuai.com/selenium-playground/select-dropdown-demo/");
-        handleCookies();
+        openPage("https://www.testmuai.com/selenium-playground/select-dropdown-demo/");
 
         WebElement dayDropdown = driver.findElement(By.id("select-demo"));
 
