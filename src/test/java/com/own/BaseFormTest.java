@@ -5,18 +5,23 @@ import java.time.Duration;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+//Közös tesztek. 
 //https://www.youtube.com/watch?v=HpL6EX2kjq4
 @Disabled
 public class BaseFormTest {
 
     protected WebDriver driver;
+    // 10 másodperces várakoztatás deklarálása.
+    protected WebDriverWait wait;
 
     @Disabled
     @Test
@@ -51,16 +56,11 @@ public class BaseFormTest {
         // driver.manage().window().maximize();
     }
 
-    @Test
-    void myTest() {
-
-        // driver = new ChromeDriver();
-        driver.get("https://www.testmuai.com/selenium-playground/simple-form-demo/");
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    /** Sütik elfogadása. */
+    void handleCookies() {
 
         try {
-
+            // Süti elfogadása gombra kattintás max 10 másodperces várakozással.
             wait.until(ExpectedConditions
                     .elementToBeClickable(By.id(
                             "CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")))
@@ -70,9 +70,34 @@ public class BaseFormTest {
             // Ha véletlenül nem ugrana fel, ne hasaljon el a teszt
             System.out.println("--- !!! --- Süti sáv nem jelent meg.");
         }
+    }
+
+    @Test
+    @DisplayName("Check the title")
+    void checkTitle() {
+        driver.get("https://www.testmuai.com/selenium-playground/simple-form-demo/");
+
+        handleCookies();
 
         assertEquals("Selenium Grid Online | Run Selenium Test On Cloud", driver.getTitle(),
                 "A weboldal címe nem egyezik.");
+    }
+
+    @Test
+    @DisplayName("Simple Form Demo")
+    void simpleFormDemo() {
+
+        driver.get("https://www.testmuai.com/selenium-playground/simple-form-demo/");
+
+        handleCookies();
+
+        driver.findElement(By.id("user-message")).sendKeys("You are the winner!");
+
+        driver.findElement(By.id("showInput")).click();
+
+        String browserMessage = driver.findElement(By.id("message")).getText();
+
+        assertEquals("You are the winner!", browserMessage);
 
         WebElement aInput = driver.findElement(By.id("sum1"));
 
@@ -88,6 +113,30 @@ public class BaseFormTest {
         String browserResult = driver.findElement(By.id("addmessage")).getText();
 
         assertEquals("25", browserResult, "A két szám összege nem egyezik.");
+    }
+
+    @Test
+    @DisplayName("Dropdown Demo")
+    void dropdownDemo() {
+        driver.get("https://www.testmuai.com/selenium-playground/select-dropdown-demo/");
+        handleCookies();
+
+        WebElement dayDropdown = driver.findElement(By.id("select-demo"));
+
+        Select select = new Select(dayDropdown);
+        select.selectByVisibleText("Friday");
+        WebElement firstSelectedOption = select.getFirstSelectedOption();
+
+        assertEquals("Friday", firstSelectedOption.getText(), "A legördülő menüben az elemre kattintás nem működik!");
+
+        select.selectByIndex(6); // 0-tól kezdődik. A disabled is számít.
+        assertEquals("Friday", select.getFirstSelectedOption().getText(),
+                "A legördülő menüben az elem index-e nem működik!");
+
+        select.selectByValue("Friday");
+        assertEquals("Friday", select.getFirstSelectedOption().getText(),
+                "A legördülő menüben a value hibás!");
+
     }
 
     @AfterEach
