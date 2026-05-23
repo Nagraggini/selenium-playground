@@ -1,9 +1,11 @@
 package com.own;
 
-import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -80,16 +82,17 @@ public class BaseFormTest {
 
         assertEquals("Please enter first value", aInput.getAttribute("placeholder"),
                 "A placeholder értékének üzenete nem egyezik!");
-
-        aInput.sendKeys("10");
-        driver.findElement(By.id("sum2")).sendKeys("15");
+        int a = 10;
+        int b = 15;
+        aInput.sendKeys(String.valueOf(a));
+        driver.findElement(By.id("sum2")).sendKeys(String.valueOf(b));
 
         // F12 chromedev toolban -> //button[text()='Get Sum']
         driver.findElement(By.xpath("//button[text()='Get Sum']")).click();
 
         String browserResult = driver.findElement(By.id("addmessage")).getText();
 
-        assertEquals("25", browserResult, "A két szám összege nem egyezik.");
+        assertEquals(String.valueOf(a + b), browserResult, "A két szám összege nem egyezik.");
     }
 
     @Test
@@ -112,6 +115,31 @@ public class BaseFormTest {
         select.selectByValue("Friday");
         assertEquals("Friday", select.getFirstSelectedOption().getText(),
                 "A legördülő menüben a value hibás!");
+    }
+
+    @Test
+    @DisplayName("Multiple dropdrown")
+    void multipleDropdown() {
+        openPage("https://www.testmuai.com/selenium-playground/select-dropdown-demo/");
+
+        WebElement multiDropdown = driver.findElement(By.id("multi-select"));
+        Select countries = new Select(multiDropdown);
+        String firstCountry = "New Jersey";
+        String secondCountry = "Texas";
+
+        var expectedCountries = new ArrayList<String>();
+        expectedCountries.add(firstCountry);
+        expectedCountries.add(secondCountry);
+
+        countries.selectByIndex(2); // New Jersey
+        countries.selectByValue(secondCountry);
+
+        assertTrue(countries.isMultiple(), "A legördülő menüben nem lehet több elemet kiválasztani.");
+
+        List<String> selectedTexts = countries.getAllSelectedOptions().stream().map(WebElement::getText).toList();
+
+        assertEquals(expectedCountries, selectedTexts,
+                "A multi-select legördülő menü nem ad vissza jó eredményt.");
 
     }
 

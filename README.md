@@ -4,7 +4,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Nagraggini_selenium-playground&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Nagraggini_selenium-playground)
 
 <!-- 2. Teszt adatok -->
-![Coverage](.github/badges/jacoco.svg)
+<!-- [Coverage](.github/badges/jacoco.svg) -->
 ![Branches](.github/badges/branches.svg)
 
 <!-- 3. Technológia és Eszközök -->
@@ -16,17 +16,9 @@
 
 **Pipeline:** Push → GitHub Actions:
 
-checkout
-↓
-setup java
-↓
-maven build
-↓
-selenium tests
-↓
-jacoco coverage
-↓
-sonar analysis
+checkout → setup java → maven build → selenium tests → jacoco coverage → sonar analysis
+
+[![](https://mermaid.ink/img/pako:eNp1U02P0zAQ_SvRcGm12aik-RYnWnHqCgSLVkK5mHhIrMaeyHZYoPS_Y6db1BQ6h0xm3nsz8pN9gIY4QgVNz4zZCtZqJmsVuHjLDL4jLR_R2ODN7_v74CNKsrhjo2o6373F21HD-kvaiTitmNMPJ8THqyf8utXiO-qAT-l_0BMTNnh2n_NMH3e-4UZ-YC3uiPHF8gLrmOI9boj2As0MoQGVlyw-WS1UG4y6X87GNh02-0dhe5zpjJBDPx1h6_yYQVzTwOlZ_QMslmibKIpm8y0yvXXsM_M4N-ra7Uuz7gzaz8MN4ZX9t3Ung5A5g4x5cPdgsek0SXw_WEHKBHTK1-yJeV4NIbRacKisHjEEiVoyX8K0tQbbocQaKvfLmd7XUCuvGZj6QiTPMk1j20H1jfXGVePAmcWXy_i3q1Fx1BsalYUqzrNpCFQH-OHLKC1XabnOs6Qs0iwP4afrJlH2Oo2zMi3juCjy-BjCr2nrKiriLFnlSZyt12VRrpIQkAtL-uHlOfh0_APY7vI5?type=png)](https://mermaid.live/edit#pako:eNp1U02P0zAQ_SvRcGm12aik-RYnWnHqCgSLVkK5mHhIrMaeyHZYoPS_Y6db1BQ6h0xm3nsz8pN9gIY4QgVNz4zZCtZqJmsVuHjLDL4jLR_R2ODN7_v74CNKsrhjo2o6373F21HD-kvaiTitmNMPJ8THqyf8utXiO-qAT-l_0BMTNnh2n_NMH3e-4UZ-YC3uiPHF8gLrmOI9boj2As0MoQGVlyw-WS1UG4y6X87GNh02-0dhe5zpjJBDPx1h6_yYQVzTwOlZ_QMslmibKIpm8y0yvXXsM_M4N-ra7Uuz7gzaz8MN4ZX9t3Ung5A5g4x5cPdgsek0SXw_WEHKBHTK1-yJeV4NIbRacKisHjEEiVoyX8K0tQbbocQaKvfLmd7XUCuvGZj6QiTPMk1j20H1jfXGVePAmcWXy_i3q1Fx1BsalYUqzrNpCFQH-OHLKC1XabnOs6Qs0iwP4afrJlH2Oo2zMi3juCjy-BjCr2nrKiriLFnlSZyt12VRrpIQkAtL-uHlOfh0_APY7vI5)
 
 [Programozásról szóló könyvem](https://nagraggini.github.io/my-awesome-book/)
 
