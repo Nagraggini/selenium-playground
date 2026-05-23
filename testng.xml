@@ -1,0 +1,14 @@
+<!--Az Eclipse-ben ezt a fájl nem kell kézzel megírni, elég, ha a pom.xml-ben be van importálva, mjad jobb klikk a java osztály fájlodon és TestNG -> Convert to TestNG -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="OwnTestSuite">
+  <test name="AllTest">
+    <classes>
+      <!--mappastruktúra és osztálynév-->
+      <class name="com.own.LocalLaunchTest"/>
+      <!--TODO: https://www.youtube.com/watch?v=HpL6EX2kjq4
+      57. perctől-->
+    </classes>
+  </test>
+</suite>

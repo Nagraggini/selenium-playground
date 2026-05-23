@@ -12,7 +12,7 @@
 
     <!-- Írd be a tesztelni kívánt honlap url-t. -->
 
-    <url>https://automationexercise.com/</url>
+    <url>https://www.testmuai.com/selenium-playground/</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
