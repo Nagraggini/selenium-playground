@@ -3,39 +3,81 @@ package com.own;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class SimpleFormTest extends BaseTest {
 
     @Test
-    @DisplayName("Simple Form Demo")
-    void simpleFormDemo() {
+    @DisplayName("Single Input Field")
+    void singleInputField() {
 
         openPage("https://www.testmuai.com/selenium-playground/simple-form-demo/");
 
         driver.findElement(By.id("user-message")).sendKeys("You are the winner!");
-
         driver.findElement(By.id("showInput")).click();
 
         String browserMessage = driver.findElement(By.id("message")).getText();
 
         assertEquals("You are the winner!", browserMessage);
+    }
+
+    @Test
+    @DisplayName("Two Input Fields use two number")
+    @ParameterizedTest
+    // Formátum: "szam1, szam2, vartOsszeg",
+    @CsvSource({
+            "1,  2,  3",
+            "5,  5,  10",
+            "-3, 5,  2"
+    })
+    void twoInputFieldsUseTwoNumber(int number1, int number2, int expectedSum) {
+        openPage("https://www.testmuai.com/selenium-playground/simple-form-demo/");
+
+        // wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Get
+        // Sum']")));
 
         WebElement aInput = driver.findElement(By.id("sum1"));
 
         assertEquals("Please enter first value", aInput.getAttribute("placeholder"),
                 "A placeholder értékének üzenete nem egyezik!");
-        int a = 10;
+
+        aInput.sendKeys(String.valueOf(number1));
+        driver.findElement(By.id("sum2")).sendKeys(String.valueOf(number2));
+
+        // F12 chromedev toolban -> //button[text()='Get Sum']
+        driver.findElement(By.xpath("//button[contains(.,'Get Sum')]")).click();
+
+        String actualResult = driver.findElement(By.id("addmessage")).getText();
+
+        assertEquals(String.valueOf(expectedSum), actualResult, "A két szám összege nem egyezik.");
+    }
+
+    @Test
+    @DisplayName("Two Input Fields use string instead of number on the first input field.")
+    void twoInputFieldsUseOneStringInsteadOfNumberOnTheFirstInput() {
+        openPage("https://www.testmuai.com/selenium-playground/simple-form-demo/");
+
+        WebElement aInput = driver.findElement(By.id("sum1"));
+
+        String a = "fifteen";
         int b = 15;
         aInput.sendKeys(String.valueOf(a));
         driver.findElement(By.id("sum2")).sendKeys(String.valueOf(b));
 
         // F12 chromedev toolban -> //button[text()='Get Sum']
         driver.findElement(By.xpath("//button[text()='Get Sum']")).click();
+        String expectedSum = "Entered value is not a number";
+        String actualResult = driver.findElement(By.id("addmessage")).getText();
 
-        String browserResult = driver.findElement(By.id("addmessage")).getText();
-
-        assertEquals(String.valueOf(a + b), browserResult, "A két szám összege nem egyezik.");
+        assertEquals(String.valueOf(expectedSum), actualResult,
+                "Nem jelenik meg a hibaüzenet, hogy valid számot írd be.");
     }
+    // TODO: A b változó legyen szöveg, egyik se legyen szöveg, és azt is csekkold,
+    // hogy mi van, ha nem írsz egyikbe se semmit.
+    // Ezekkel más eredményt kapsz: "0, 0, 0",
+    // "-2, -2, -4"
+
 }
