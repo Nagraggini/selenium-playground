@@ -32,7 +32,6 @@ public class BaseTest {
         try {
             driver = DriverFactory.createDriver(target);
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
