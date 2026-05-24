@@ -12,7 +12,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 public class DriverFactory {
 
     public static WebDriver createDriver(String target) throws MalformedURLException {
-        // Ha nem adtunk meg semmit, alapértelmezetten fusson local-ban
+        // Ha a futtatáskor nem adtak meg paramétert, biztonsági okokból helyileg
+        // indítjuk el.
         if (target == null) {
             target = "local";
         }
@@ -29,19 +30,34 @@ public class DriverFactory {
                 ltOptions.put("accessKey", "LT_qWiCXthkGax20mTB3wvZHai8FGvAhZsbZxdiQfQ4mb2bQNq");
                 ltOptions.put("project", "LambdaTest");
                 ltOptions.put("build", "Modern execution");
+                ltOptions.put("selenium_version", "4.0.0");
                 ltOptions.put("w3c", true);
                 browserOptions.setCapability("LT:Options", ltOptions);
 
+                // Kapcsolódás a távoli LambdaTest Selenium Hub-hoz
                 return new RemoteWebDriver(
+
+                        // Itt inicializáljuk a TÁVOLI drivert
+                        // username and accessKey
                         new URL("https://ecsediandrea:LT_qWiCXthkGax20mTB3wvZHai8FGvAhZsbZxdiQfQ4mb2bQNq@hub.lambdatest.com/wd/hub"),
                         browserOptions);
 
             case "local":
             default:
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-                options.addArguments("--headless=new"); // CI/CD-hez (pl. GitHub Actions)
+
+                headlessMode(options);
+
                 return new ChromeDriver(options);
         }
     }
+
+    /** Ezzel nem nyílik meg a böngésző. */
+    static ChromeOptions headlessMode(ChromeOptions options) {
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--headless=new"); // CI/CD-hez (pl. GitHub Actions)
+
+        return options;
+    }
+
 }
