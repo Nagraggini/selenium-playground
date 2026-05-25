@@ -17,7 +17,11 @@ public class SimpleFormTest extends BaseTest {
 
         openPage("https://www.testmuai.com/selenium-playground/simple-form-demo/");
 
-        driver.findElement(By.id("user-message")).sendKeys("You are the winner!");
+        WebElement userMessage = wait.until(
+                ExpectedConditions.visibilityOfElementLocated((By.id("user-message"))));
+
+        userMessage.sendKeys("You are the winner!");
+
         driver.findElement(By.id("showInput")).click();
 
         String browserMessage = driver.findElement(By.id("message")).getText();
@@ -25,7 +29,6 @@ public class SimpleFormTest extends BaseTest {
         assertEquals("You are the winner!", browserMessage);
     }
 
-    @Test
     @DisplayName("Two Input Fields use two number")
     @ParameterizedTest
     // Formátum: "szam1, szam2, vartOsszeg",
