@@ -58,7 +58,12 @@ checkout → setup java → maven build → selenium tests → jacoco coverage �
 # Források
 
 https://www.youtube.com/watch?v=HpL6EX2kjq4         
-Gemini és ChatGPT           
+Gemini és ChatGPT  
+https://www.youtube.com/watch?v=XyBxEnyBb0A
+https://devhints.io/xpath
+https://www.geeksforgeeks.org/software-testing/xpath-locators/    
+https://www.geeksforgeeks.org/software-testing/introduction-to-junit-5/ 
+https://testrigor.com/blog/how-to-resolve-timeoutexception-in-selenium/
 
 # Seleniumról általánosságban
 
@@ -469,6 +474,8 @@ WebElement elementByCss = driver.findElement(
 );
 
 // XPath használatával
+//Chrome devtoolban az Elements lapfülön ctrl+f és írd be azt amit keresel pl.: //button[@id='submit-btn']
+//Ha csak egy találatot ad ki, akkor jó az xpath-od. 
 WebElement elementByXpath = driver.findElement(
     By.xpath("//button[@id='submit-btn']")
 );
