@@ -18,7 +18,7 @@
 
 checkout → setup java → maven build → selenium tests → jacoco coverage → sonar analysis
 
-[![](https://mermaid.ink/img/pako:eNp1U02P0zAQ_SvRcGm12aik-RYnWnHqCgSLVkK5mHhIrMaeyHZYoPS_Y6db1BQ6h0xm3nsz8pN9gIY4QgVNz4zZCtZqJmsVuHjLDL4jLR_R2ODN7_v74CNKsrhjo2o6373F21HD-kvaiTitmNMPJ8THqyf8utXiO-qAT-l_0BMTNnh2n_NMH3e-4UZ-YC3uiPHF8gLrmOI9boj2As0MoQGVlyw-WS1UG4y6X87GNh02-0dhe5zpjJBDPx1h6_yYQVzTwOlZ_QMslmibKIpm8y0yvXXsM_M4N-ra7Uuz7gzaz8MN4ZX9t3Ung5A5g4x5cPdgsek0SXw_WEHKBHTK1-yJeV4NIbRacKisHjEEiVoyX8K0tQbbocQaKvfLmd7XUCuvGZj6QiTPMk1j20H1jfXGVePAmcWXy_i3q1Fx1BsalYUqzrNpCFQH-OHLKC1XabnOs6Qs0iwP4afrJlH2Oo2zMi3juCjy-BjCr2nrKiriLFnlSZyt12VRrpIQkAtL-uHlOfh0_APY7vI5?type=png)](https://mermaid.live/edit#pako:eNp1U02P0zAQ_SvRcGm12aik-RYnWnHqCgSLVkK5mHhIrMaeyHZYoPS_Y6db1BQ6h0xm3nsz8pN9gIY4QgVNz4zZCtZqJmsVuHjLDL4jLR_R2ODN7_v74CNKsrhjo2o6373F21HD-kvaiTitmNMPJ8THqyf8utXiO-qAT-l_0BMTNnh2n_NMH3e-4UZ-YC3uiPHF8gLrmOI9boj2As0MoQGVlyw-WS1UG4y6X87GNh02-0dhe5zpjJBDPx1h6_yYQVzTwOlZ_QMslmibKIpm8y0yvXXsM_M4N-ra7Uuz7gzaz8MN4ZX9t3Ung5A5g4x5cPdgsek0SXw_WEHKBHTK1-yJeV4NIbRacKisHjEEiVoyX8K0tQbbocQaKvfLmd7XUCuvGZj6QiTPMk1j20H1jfXGVePAmcWXy_i3q1Fx1BsalYUqzrNpCFQH-OHLKC1XabnOs6Qs0iwP4afrJlH2Oo2zMi3juCjy-BjCr2nrKiriLFnlSZyt12VRrpIQkAtL-uHlOfh0_APY7vI5)
+[![](https://mermaid.ink/img/pako:eNp9VF1v2jAU_SuWp0qwhYgkECCa9lAQGtI6pkFVaeLFjW8Ti9iObGfQMfrb5yQFEgnmh9i-556bcz-SA44lBRzhOCNazxhJFOEbgey6u0M_ISOGSaFTlmvUWYgUFDNExICIoOhRkwS6tfc90bAGbdDnv70emqYQb-_lvrRcw2dK5lTuxFxJfstnxXiewVyqax6u-8UGYb9BzUlspHpFkZUDViQTSIN5zK2umlNldmEeamu5PjzBcx0E0Wq7Bj0RZtDOPi7gW_WCTrdhKR2s1B-2IN8koS0stbXKYCrlloFuITIHUVI6K6OYSFChsiZsgKiZrdKJc2yn1M6_kdenWAExUOOn2IaoBEz3Izpn1pQIxErU-sEOQ2ea2q7AMq86j2S9W2LLflVRs-1NQW9xCXz11iS5mUt7IFps-g7OgMtW_XiRGWaH5MS-Ebw9Sa3Q2pYmg4XICzNnkLUbZ3bygmg7Xuud_F7wZ1tUJgwS1dFz0OXi1xfY5xAboKuC_zfeUkDdnYXQttl0-VKHX4p1CnOmtKn8z2lhByeKURwZVYCDOShOyiuuUtpgkwKHDY7skRK13eCNKDk5Eb-k5CeakkWS4uiFZNreipyWs1J_-WerAkFBTWUhDI68oVcFwdEB73HU8_sTNxgMx-FgGPoDP_ADB7_iKBy7Xn8cBl4wGnqD8eDo4D_Vaz13NOr7k2Dk-aE3nIRh6GCgzI7tw_vPp9yO_wBwa3Vy?type=png)](https://mermaid.live/edit#pako:eNp9VF1v2jAU_SuWp0qwhYgkECCa9lAQGtI6pkFVaeLFjW8Ti9iObGfQMfrb5yQFEgnmh9i-556bcz-SA44lBRzhOCNazxhJFOEbgey6u0M_ISOGSaFTlmvUWYgUFDNExICIoOhRkwS6tfc90bAGbdDnv70emqYQb-_lvrRcw2dK5lTuxFxJfstnxXiewVyqax6u-8UGYb9BzUlspHpFkZUDViQTSIN5zK2umlNldmEeamu5PjzBcx0E0Wq7Bj0RZtDOPi7gW_WCTrdhKR2s1B-2IN8koS0stbXKYCrlloFuITIHUVI6K6OYSFChsiZsgKiZrdKJc2yn1M6_kdenWAExUOOn2IaoBEz3Izpn1pQIxErU-sEOQ2ea2q7AMq86j2S9W2LLflVRs-1NQW9xCXz11iS5mUt7IFps-g7OgMtW_XiRGWaH5MS-Ebw9Sa3Q2pYmg4XICzNnkLUbZ3bygmg7Xuud_F7wZ1tUJgwS1dFz0OXi1xfY5xAboKuC_zfeUkDdnYXQttl0-VKHX4p1CnOmtKn8z2lhByeKURwZVYCDOShOyiuuUtpgkwKHDY7skRK13eCNKDk5Eb-k5CeakkWS4uiFZNreipyWs1J_-WerAkFBTWUhDI68oVcFwdEB73HU8_sTNxgMx-FgGPoDP_ADB7_iKBy7Xn8cBl4wGnqD8eDo4D_Vaz13NOr7k2Dk-aE3nIRh6GCgzI7tw_vPp9yO_wBwa3Vy)
 
 [Programozásról szóló könyvem](https://nagraggini.github.io/my-awesome-book/)
 
@@ -329,7 +329,12 @@ Ezt módosítsd:
                   HEADLESS: true
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   SONAR_HOST_URL: https://sonarcloud.io
-              run: mvn -B verify sonar:sonar -Dsonar.projectKey=nagraggini_selenium-playground
+                  # GitHub Secrets
+                  LAMBDATEST_USERNAME: ${{ secrets.LT_USERNAME }}
+                  LAMBDATEST_KEY: ${{ secrets.LT_ACCESS_KEY }}
+              # Hozzáadva a -e flag a részletes hibaüzenetekért
+              # -DrunTarget=cloud -> A DriverFactory osztálynak meg kell adni, hogyan futassa a teszteket.
+              run: mvn -B -e verify sonar:sonar -DrunTarget=cloud -Dsonar.projectKey=nagraggini_selenium-playground
 
 ```
 
