@@ -1,6 +1,5 @@
 package com.own;
 
-import java.net.MalformedURLException;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
@@ -23,15 +22,12 @@ public class BaseTest {
     @BeforeEach
     void setUp() {
 
-        // Kiolvassa a "runTarget" paramétert (ezt futtatáskor adjuk majd meg)
+        // Kiolvassa a "runTarget" paramétert (ezt futtatáskor adjuk majd meg).
         String target = System.getProperty("runTarget", "local");
 
         // Elkéri a megfelelő drivert a gyárból
-        try {
-            driver = DriverFactory.createDriver(target);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+
+        driver = DriverFactory.createDriver(target);
 
         // ChromeOptions options = new ChromeOptions();
         // headlessMode(options);
