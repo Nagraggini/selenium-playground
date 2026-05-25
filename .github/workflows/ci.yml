@@ -58,7 +58,7 @@ jobs:
               run: mvn -B clean compile
 
             # =========================
-            # 5. Run Tests & Sonar Scan (ÖSSZEVONVA)
+            # 5. Run Tests & Sonar Scan
             # =========================
             # Egyszerre futtatja a teszteket headless módban, és küldi az adatokat a Sonarnak
             - name: Run Tests and Sonar Scan
@@ -66,8 +66,12 @@ jobs:
                   HEADLESS: true
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   SONAR_HOST_URL: https://sonarcloud.io
+                  # GitHub Secrets
+                  LAMBDATEST_USERNAME: ${{ secrets.LT_USERNAME }}
+                  LAMBDATEST_KEY: ${{ secrets.LT_ACCESS_KEY }}
               # Hozzáadva a -e flag a részletes hibaüzenetekért
-              run: mvn -B -e verify sonar:sonar -Dsonar.projectKey=nagraggini_selenium-playground
+              # -DrunTarget=cloud -> A DriverFactory osztálynak meg kell adni, hogyan futassa a teszteket.
+              run: mvn -B -e verify sonar:sonar -DrunTarget=cloud -Dsonar.projectKey=nagraggini_selenium-playground
 
             # =========================
             # 6. Generate JaCoCo Badges
