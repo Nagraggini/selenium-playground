@@ -54,8 +54,11 @@ public class DriverFactory {
 
     /** Ezzel nem nyílik meg a böngésző. */
     static ChromeOptions headlessMode(ChromeOptions options) {
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--headless=new"); // CI/CD-hez (pl. GitHub Actions)
+        options.addArguments("--headless=new"); // Újabb Selenium verzióknál a javasolt formátum
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080"); // Headless módban fontos a fix ablakméret
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
 
         return options;
     }
