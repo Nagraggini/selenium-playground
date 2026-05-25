@@ -8,8 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -39,16 +37,6 @@ public class BaseTest {
         // headlessMode(options);
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
-
-    ChromeOptions headlessMode(ChromeOptions options) {
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--headless=new");
-
-        // Itt inicializáljuk a LOKÁLIS drivert.
-        // Ezzel nem nyílik meg a böngésző.
-        driver = new ChromeDriver(options);
-        return options;
     }
 
     /** Csak azt, hogy a böngésző szerint az oldal betöltődött. */
