@@ -63,6 +63,7 @@ https://www.youtube.com/watch?v=XyBxEnyBb0A
 https://devhints.io/xpath
 https://www.geeksforgeeks.org/software-testing/xpath-locators/    
 https://www.geeksforgeeks.org/software-testing/introduction-to-junit-5/ 
+https://testrigor.com/blog/how-to-resolve-timeoutexception-in-selenium/
 
 # Seleniumról általánosságban
 

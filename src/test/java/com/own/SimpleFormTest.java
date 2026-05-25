@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SimpleFormTest extends BaseTest {
 
@@ -60,11 +61,11 @@ public class SimpleFormTest extends BaseTest {
     void twoInputFieldsUseOneStringInsteadOfNumberOnTheFirstInput() {
         openPage("https://www.testmuai.com/selenium-playground/simple-form-demo/");
 
-        WebElement aInput = driver.findElement(By.id("sum1"));
+        WebElement aInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sum1")));
 
         String a = "fifteen";
         int b = 15;
-        aInput.sendKeys(String.valueOf(a));
+        aInput.sendKeys(a);
         driver.findElement(By.id("sum2")).sendKeys(String.valueOf(b));
 
         // F12 chromedev toolban -> //button[text()='Get Sum']
@@ -72,8 +73,8 @@ public class SimpleFormTest extends BaseTest {
         String expectedSum = "Entered value is not a number";
         String actualResult = driver.findElement(By.id("addmessage")).getText();
 
-        assertEquals(String.valueOf(expectedSum), actualResult,
-                "Nem jelenik meg a hibaüzenet, hogy valid számot írd be.");
+        assertEquals(expectedSum, actualResult,
+                "Nem jelent meg a várt hibaüzenet.");
     }
     // TODO: A b változó legyen szöveg, egyik se legyen szöveg, és azt is csekkold,
     // hogy mi van, ha nem írsz egyikbe se semmit.
