@@ -40,16 +40,17 @@ public class SimpleFormTest extends BaseTest {
     void twoInputFieldsUseTwoNumber(int number1, int number2, int expectedSum) {
         openPage("https://www.testmuai.com/selenium-playground/simple-form-demo/");
 
-        // wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Get
-        // Sum']")));
-
-        WebElement aInput = driver.findElement(By.id("sum1"));
+        // Megvárjuk, amíg az első beviteli mező valóban megjelenik a felhőben futó
+        // böngészőben
+        WebElement aInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sum1")));
 
         assertEquals("Please enter first value", aInput.getAttribute("placeholder"),
                 "A placeholder értékének üzenete nem egyezik!");
 
         aInput.sendKeys(String.valueOf(number1));
-        driver.findElement(By.id("sum2")).sendKeys(String.valueOf(number2));
+
+        // A második mezőnél és a gombnál is érdemes megvárni, vagy ellenőrizni őket:
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sum2"))).sendKeys(String.valueOf(number2));
 
         // F12 chromedev toolban -> //button[text()='Get Sum']
         driver.findElement(By.xpath("//button[contains(.,'Get Sum')]")).click();
