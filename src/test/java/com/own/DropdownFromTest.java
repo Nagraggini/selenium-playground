@@ -1,15 +1,15 @@
 package com.own;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 public class DropdownFromTest extends BaseTest {
@@ -40,7 +40,7 @@ public class DropdownFromTest extends BaseTest {
     void multipleDropdown() {
         openPage("https://www.testmuai.com/selenium-playground/select-dropdown-demo/");
 
-        WebElement multiDropdown = driver.findElement(By.id("multi-select"));
+        WebElement multiDropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("multi-select")));
         Select countries = new Select(multiDropdown);
         String firstCountry = "New Jersey";
         String secondCountry = "Texas";
