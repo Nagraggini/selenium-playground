@@ -11,7 +11,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class DriverFactory {
 
-    public static WebDriver createDriver(String target) throws MalformedURLException {
+    public static WebDriver createDriver(String target) {
         // Ha a futtatáskor nem adtak meg paramétert, biztonsági okokból helyileg
         // indítjuk el.
         if (target == null) {
@@ -21,13 +21,18 @@ public class DriverFactory {
         switch (target.toLowerCase()) {
             case "remote":
             case "cloud":
+                // Egyedi nevet adunk a környezeti változónak, hogy ne ütközzön a rendszer saját
+                // USERNAME változójával
+                String ltUser = System.getenv("LAMBDATEST_USERNAME");
+                String ltKey = System.getenv("LAMBDATEST_KEY");
+
                 ChromeOptions browserOptions = new ChromeOptions();
                 browserOptions.setPlatformName("Windows 10");
                 browserOptions.setBrowserVersion("148.0");
 
                 HashMap<String, Object> ltOptions = new HashMap<>();
-                ltOptions.put("username", "ecsediandrea");
-                ltOptions.put("accessKey", "LT_qWiCXthkGax20mTB3wvZHai8FGvAhZsbZxdiQfQ4mb2bQNq");
+                ltOptions.put("username", ltUser);
+                ltOptions.put("accessKey", ltKey);
                 ltOptions.put("project", "LambdaTest");
                 ltOptions.put("build", "Modern execution");
                 ltOptions.put("selenium_version", "4.0.0");
@@ -35,13 +40,20 @@ public class DriverFactory {
                 browserOptions.setCapability("LT:Options", ltOptions);
 
                 // Kapcsolódás a távoli LambdaTest Selenium Hub-hoz
-                return new RemoteWebDriver(
+                try {
+                    return new RemoteWebDriver(
 
-                        // Itt inicializáljuk a TÁVOLI drivert
-                        // username and accessKey
-                        new URL("https://ecsediandrea:LT_qWiCXthkGax20mTB3wvZHai8FGvAhZsbZxdiQfQ4mb2bQNq@hub.lambdatest.com/wd/hub"),
-                        browserOptions);
+                            // Itt inicializáljuk a TÁVOLI drivert
+                            // username and accessKey
+                            new URL("https://" + ltUser + ":"
+                                    + ltKey
+                                    + "@hub.lambdatest.com/wd/hub"),
+                            browserOptions);
+                } catch (MalformedURLException e) {
 
+                    e.printStackTrace();
+                }
+                return null;
             case "local":
             default:
                 ChromeOptions options = new ChromeOptions();
@@ -57,8 +69,8 @@ public class DriverFactory {
         options.addArguments("--headless=new"); // Újabb Selenium verzióknál a javasolt formátum
         options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080"); // Headless módban fontos a fix ablakméret
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox"); // GitHub-os linux szerveren történő futtatáshoz kell.
+        options.addArguments("--disable-dev-shm-usage");// GitHub-os linux szerveren történő futtatáshoz kell.
 
         return options;
     }
