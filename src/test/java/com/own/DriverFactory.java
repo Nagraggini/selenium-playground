@@ -72,6 +72,13 @@ public class DriverFactory {
         options.addArguments("--no-sandbox"); // GitHub-os linux szerveren történő futtatáshoz kell.
         options.addArguments("--disable-dev-shm-usage");// GitHub-os linux szerveren történő futtatáshoz kell.
 
+        // Teljesen elnémítja a CDP verziókereső hibaüzeneteit
+        java.util.logging.Logger.getLogger("org.openqa.selenium.devtools.CdpVersionFinder")
+                .setLevel(java.util.logging.Level.OFF);
+
+        // Az összes Selenium figyelmeztetés elnémítása
+        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(java.util.logging.Level.SEVERE);
+
         return options;
     }
 
