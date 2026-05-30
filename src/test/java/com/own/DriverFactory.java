@@ -71,6 +71,7 @@ public class DriverFactory {
         options.addArguments("--window-size=1920,1080"); // Headless módban fontos a fix ablakméret
         options.addArguments("--no-sandbox"); // GitHub-os linux szerveren történő futtatáshoz kell.
         options.addArguments("--disable-dev-shm-usage");// GitHub-os linux szerveren történő futtatáshoz kell.
+        options.addArguments("--incognito");
 
         // Teljesen elnémítja a CDP verziókereső hibaüzeneteit
         java.util.logging.Logger.getLogger("org.openqa.selenium.devtools.CdpVersionFinder")
